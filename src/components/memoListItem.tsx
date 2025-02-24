@@ -12,24 +12,6 @@ const MemoListItem = (): JSX.Element => {
                     <Text>X</Text>
                 </View>
             </View>
-            <View style={styles.memoListItem}>
-                <View >
-                    <Text style={styles.memoListItemTitle}>買い物リスト</Text>
-                    <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
-                </View>
-                <View>
-                    <Text>X</Text>
-                </View>
-            </View>
-            <View style={styles.memoListItem}>
-                <View >
-                    <Text style={styles.memoListItemTitle}>買い物リスト</Text>
-                    <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
-                </View>
-                <View>
-                    <Text>X</Text>
-                </View>
-            </View>
         </View>
     )
 }
