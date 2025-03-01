@@ -3,9 +3,18 @@ import { View, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native"
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
 import { router } from 'expo-router'
-
-const handlePress = (): void => {
-    router.back()
+import { collection, addDoc } from 'firebase/firestore'
+import { db } from '../../config'
+const handlePress = async (): void => {
+    addDoc(collection(db, 'memos'), {
+        bodyText: 'Hello, World!'
+    })
+        .then((docRef) => {
+            console.log('success', docRef.id)
+            router.back()
+        }).catch((error) => {
+            console.log(error)
+        })
 }
 const create = (): JSX.Element => {
     return (
