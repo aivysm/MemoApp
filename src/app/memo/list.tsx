@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react'
 import LogOutButton from '../../components/logout'
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore'
 import { db, auth } from '../../config'
-import { type Memo } from '../../types/memo'
+import { type Memo } from '../../../types/memo'
 
 const handlePress = (): void => {
     router.push('/memo/create')
 }
 
 const List = (): JSX.Element => {
-    const [memos, setMemos] = useState<Memo>([])
+    const [memos, setMemos] = useState<Memo[]>([])
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({

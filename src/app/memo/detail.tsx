@@ -5,7 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { onSnapshot, doc } from 'firebase/firestore'
 import { auth, db } from '../../config'
-import { type Memo } from '../../types/memo'
+import { type Memo } from '../../../types/memo'
 
 const handlePress = (id: string): void => {
     router.push({ pathname: '/memo/edit', params: { id } })
