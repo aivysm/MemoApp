@@ -7,13 +7,14 @@ import { useEffect, useState } from 'react'
 import LogOutButton from '../../components/logout'
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore'
 import { db, auth } from '../../config'
-import { type Memo } from '../../../types/memo'
+import { type Memo } from '../../types/memo'
 
 const handlePress = (): void => {
     router.push('/memo/create')
 }
+
 const List = (): JSX.Element => {
-    const [memos, setMemos] = useState<Memo[]>([])
+    const [memos, setMemos] = useState<Memo>([])
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({
@@ -23,11 +24,11 @@ const List = (): JSX.Element => {
     useEffect(() => {
         if (auth.currentUser === null) { return }
         const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
-        const q = query(ref, orderBy('updateAt', 'desc'))
+        const q = query(ref, orderBy('updatedAt', 'desc'))
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const remoteMemos: Memo[] = []
             snapshot.forEach((doc) => {
-                console.log('memo', doc.data())
+                console.log('Memo', doc.data())
                 const { bodyText, updatedAt } = doc.data()
                 remoteMemos.push({
                     id: doc.id,
@@ -42,15 +43,12 @@ const List = (): JSX.Element => {
     return (
         <View style={styles.container}>
             <View>
-                {memos.map((memo) => {
-                    return <MemoListItem key={memo.id} memo={memo} />
-                })}
+                {memos.map((memo: Memo) => <MemoListItem key={memo.id} memo={memo} />)}
             </View>
             <CircleButton onPress={handlePress}>
                 <Icon name='plus' size={40} color='#ffffff' />
             </CircleButton>
         </View>
-
     )
 }
 

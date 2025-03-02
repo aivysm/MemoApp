@@ -6,7 +6,7 @@ import { router } from 'expo-router'
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
 import { db, auth } from '../../config'
 import { useState } from "react"
-import KeyboardAvoidingView from "../../components/keyboardAvoidingView"
+import KeyboardAvoidingView from "../../components/KeyboardAvoidingView"
 
 
 const handlePress = (bodyText: string): void => {
@@ -14,7 +14,7 @@ const handlePress = (bodyText: string): void => {
     const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
     addDoc(ref, {
         bodyText,
-        updateAt: Timestamp.fromDate(new Date())
+        updatedAt: Timestamp.fromDate(new Date())
     })
         .then((docRef) => {
             console.log('success', docRef.id)
