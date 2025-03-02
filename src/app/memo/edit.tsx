@@ -21,7 +21,6 @@ const handlePress = (id: string, bodyText: string): void => {
         .catch(() => {
             Alert.alert('更新に失敗しました')
         })
-    router.back()
 }
 const edit = (): JSX.Element => {
     const id = String(useLocalSearchParams().id)
@@ -30,7 +29,6 @@ const edit = (): JSX.Element => {
         if (auth.currentUser === null) { return }
         const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
         getDoc(ref).then((docRef) => {
-            console.log(docRef.data())
             const RemoteBodyText = docRef?.data()?.bodyText
             setBodyText(RemoteBodyText)
         })
